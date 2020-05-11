@@ -1,9 +1,13 @@
 version: 2.1
 
 orbs:
-  maven: circleci/maven@0.0.12
+ android: circleci/android@0.2.0
 
-workflows:
-  maven_test:
-    jobs:
-      - maven/test # checkout, build, test, and upload test results
+jobs:
+  build:
+    executor: android/android
+        
+    steps:
+      - checkout
+      - run:
+          command: ./gradlew build
